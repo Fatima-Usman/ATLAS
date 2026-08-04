@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATLAS</title>
   
-  <!-- Serif fonts matching the layout design -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
@@ -20,20 +19,29 @@
     body, html {
       height: 100%;
       width: 100%;
-      background-color: #003876; /* Deep blue theme matching the image */
+      background-color: #003876;
       color: #ffffff;
       font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Centered Landing Container */
+    .hero-container {
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-    }
-
-    .landing-container {
       padding: 2rem;
     }
 
-    /* Main ATLAS Title */
+    /* Title wrapper to keep compass neatly next to the 'S' */
+    .title-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
     .title {
       font-family: 'Cinzel', serif;
       font-size: clamp(3rem, 10vw, 6rem);
@@ -41,10 +49,17 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       line-height: 1;
-      margin-bottom: 0.75rem;
     }
 
-    /* Subtitle: PREP, MAPPED */
+    /* Small compass positioned top-right of ATLAS */
+    .title-compass {
+      position: absolute;
+      top: 5px;
+      right: -24px;
+      width: 18px;
+      height: 18px;
+    }
+
     .subtitle {
       font-family: 'Cinzel', serif;
       font-size: clamp(0.9rem, 2.5vw, 1.4rem);
@@ -52,15 +67,154 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       opacity: 0.9;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Interactive O-Levels Link Box */
+    .olevels-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+
+    .compass-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .compass-needle {
+      transform-origin: 12px 12px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .olevels-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+
+    .olevels-text::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1.5px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ffffff;
+      transition: width 0.3s ease-in-out;
+    }
+
+    /* HOVER EFFECTS */
+    .olevels-wrapper:hover .compass-needle {
+      transform: rotate(90deg);
+    }
+
+    .olevels-wrapper:hover .olevels-text::after {
+      width: 100%;
+    }
+
+    /* Left-aligned subjects view */
+    .subjects-container {
+      min-height: 100vh;
+      padding: 4rem 10%;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .subjects-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .subject-list {
+      list-style: none;
+    }
+
+    .subject-item {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .back-btn {
+      color: #ffffff;
+      text-decoration: underline;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <div class="landing-container">
-    <h1 class="title">ATLAS</h1>
+  <!-- Landing View -->
+  <div id="home" class="hero-container">
+    <div class="title-wrapper">
+      <h1 class="title">ATLAS</h1>
+      <!-- Small compass next to title -->
+      <svg class="title-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <polygon points="12,5 15,12 12,19 9,12" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </div>
+    
     <p class="subtitle">PREP , MAPPED</p>
+    
+    <div onclick="showSubjects()" class="olevels-wrapper">
+      <!-- Interactive O-Levels Compass -->
+      <svg class="compass-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <text x="12" y="0" font-size="5" fill="currentColor" text-anchor="middle" font-family="sans-serif" font-weight="bold">N</text>
+        <g class="compass-needle">
+          <polygon points="12,5 15,12 12,19 9,12" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        </g>
+      </svg>
+      
+      <span class="olevels-text">O-Levels</span>
+    </div>
   </div>
+
+  <!-- Subjects View -->
+  <div id="subjects" class="subjects-container" style="display: none;">
+    <a onclick="showHome()" class="back-btn">&larr; Back to Home</a>
+    <h2 class="subjects-title">Subjects</h2>
+    <ul class="subject-list">
+      <li class="subject-item">Mathematics</li>
+      <li class="subject-item">Physics</li>
+      <li class="subject-item">Chemistry</li>
+      <li class="subject-item">Computer Science</li>
+    </ul>
+  </div>
+
+  <script>
+    function showSubjects() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('subjects').style.display = 'flex';
+    }
+
+    function showHome() {
+      document.getElementById('subjects').style.display = 'none';
+      document.getElementById('home').style.display = 'flex';
+    }
+  </script>
 
 </body>
 </html>
