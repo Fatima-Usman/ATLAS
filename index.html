@@ -35,13 +35,6 @@
       padding: 2rem;
     }
 
-    /* Title wrapper to keep compass neatly next to the 'S' */
-    .title-wrapper {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 0.75rem;
-    }
-
     .title {
       font-family: 'Cinzel', serif;
       font-size: clamp(3rem, 10vw, 6rem);
@@ -49,15 +42,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       line-height: 1;
-    }
-
-    /* Small compass positioned top-right of ATLAS */
-    .title-compass {
-      position: absolute;
-      top: 5px;
-      right: -24px;
-      width: 18px;
-      height: 18px;
+      margin-bottom: 0.75rem;
     }
 
     .subtitle {
@@ -159,19 +144,7 @@
 
   <!-- Landing View -->
   <div id="home" class="hero-container">
-    <div class="title-wrapper">
-      <h1 class="title">ATLAS</h1>
-      <!-- Small compass next to title -->
-      <svg class="title-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <line x1="12" y1="1" x2="12" y2="3" />
-        <line x1="12" y1="21" x2="12" y2="23" />
-        <line x1="1" y1="12" x2="3" y2="12" />
-        <line x1="21" y1="12" x2="23" y2="12" />
-        <polygon points="12,5 15,12 12,19 9,12" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      </svg>
-    </div>
-    
+    <h1 class="title">ATLAS</h1>
     <p class="subtitle">PREP , MAPPED</p>
     
     <div onclick="showSubjects()" class="olevels-wrapper">
