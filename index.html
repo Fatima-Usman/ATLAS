@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATLAS</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
@@ -102,7 +101,7 @@
       width: 100%;
     }
 
-    /* Left-aligned subjects view */
+    /* Left-aligned subjects & page views */
     .subjects-container {
       min-height: 100vh;
       padding: 4rem 10%;
@@ -118,6 +117,7 @@
       margin-bottom: 2rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       padding-bottom: 0.5rem;
+      letter-spacing: 0.05em;
     }
 
     .subject-list {
@@ -160,7 +160,7 @@
       width: 100%;
     }
 
-    /* Sub-list Indented Dropdown - Shifted further right */
+    /* Sub-list Indented Dropdown */
     .dropdown-list {
       list-style: none;
       margin-left: 4rem;
@@ -208,13 +208,11 @@
 </head>
 <body>
 
-  <!-- Landing View -->
   <div id="home" class="hero-container">
     <h1 class="title">ATLAS</h1>
     <p class="subtitle">PREP , MAPPED</p>
     
     <div onclick="showSubjects()" class="olevels-wrapper">
-      <!-- Interactive O-Levels Compass -->
       <svg class="compass-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="9" />
         <line x1="12" y1="1" x2="12" y2="3" />
@@ -231,7 +229,6 @@
     </div>
   </div>
 
-  <!-- O-Levels View -->
   <div id="subjects" class="subjects-container" style="display: none;">
     <a onclick="showHome()" class="back-btn">&larr; Back to Home</a>
     <h2 class="subjects-title">O-Levels</h2>
@@ -239,7 +236,6 @@
     <ul class="subject-list">
       <li>
         <div onclick="toggleDropdown()" class="subjects-toggle-wrapper">
-          <!-- Compass Icon for Subjects -->
           <svg class="compass-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="9" />
             <line x1="12" y1="1" x2="12" y2="3" />
@@ -254,24 +250,40 @@
           <span class="subjects-toggle-text">Subjects</span>
         </div>
 
-        <!-- Indented Dropdown List -->
         <ul id="subjects-dropdown" class="dropdown-list">
-          <li class="dropdown-item">Islamiyat</li>
+          <li onclick="showIslamiyat()" class="dropdown-item">Islamiyat (2058)</li>
         </ul>
       </li>
     </ul>
   </div>
 
+  <div id="islamiyat-page" class="subjects-container" style="display: none;">
+    <a onclick="showSubjectsFromIslamiyat()" class="back-btn">&larr; Back to O-Levels</a>
+    <h2 class="subjects-title">ISLAMIYAT</h2>
+  </div>
+
   <script>
     function showSubjects() {
       document.getElementById('home').style.display = 'none';
+      document.getElementById('islamiyat-page').style.display = 'none';
       document.getElementById('subjects').style.display = 'flex';
     }
 
     function showHome() {
       document.getElementById('subjects').style.display = 'none';
+      document.getElementById('islamiyat-page').style.display = 'none';
       document.getElementById('home').style.display = 'flex';
       document.getElementById('subjects-dropdown').style.display = 'none';
+    }
+
+    function showIslamiyat() {
+      document.getElementById('subjects').style.display = 'none';
+      document.getElementById('islamiyat-page').style.display = 'flex';
+    }
+
+    function showSubjectsFromIslamiyat() {
+      document.getElementById('islamiyat-page').style.display = 'none';
+      document.getElementById('subjects').style.display = 'flex';
     }
 
     function toggleDropdown() {
